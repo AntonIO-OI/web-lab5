@@ -28,11 +28,15 @@
   font-size: 28px;
 }
 
+.header__menu {
+}
+
 .menu {
   display: flex;
   padding: 0;
   flex-direction: row;
   list-style: none;
+  align-items: center;
   gap: 10px;
 }
 
@@ -70,9 +74,12 @@
 }
 
 .top {
+  display: flex;
   padding: 10px 20px;
   background-color: lightgreen;
-  text-align: end;
+  justify-content: end;
+  align-items: center;
+  gap: 5px;
 }
 
 .bottom {
@@ -195,4 +202,34 @@
   .footer__subtitle {
     width: 100%;
   }
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.length,
+.width {
+  margin-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
 }

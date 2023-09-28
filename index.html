@@ -10,18 +10,23 @@
   <body>
     <!-- Header -->
     <header class="header">
-      <div class="header__inner">
+      <div class="header__inner" id="1">
         <div class="title__outer">
-          <h1 class="header__title">Flex Page</h1>
+          <h1 class="header__title" id="x">Flex Page</h1>
         </div>
         <span class="header__menu">
           <ul class="menu">
-            <a href="pages/grid.html" class="page_link">
-              <li>Grid Page</li>
-            </a>
-            <a href="https://antonio-oi.github.io/web-lab3/" class="page_link">
-              <li>No Grid / No Flex</li>
-            </a>
+            <li><button onclick="swapBlocks()">Change X and Y</button></li>
+            <li>Grid Page</li>
+            <li>No Grid / No Flex</li>
+            <li>
+              <img
+                class="image"
+                onmouseover="showForm(1)"
+                src="http://placekitten.com/g/50/50"
+                alt="Image 1"
+              />
+            </li>
           </ul>
         </span>
       </div>
@@ -30,7 +35,7 @@
     <!-- Hero -->
     <div class="hero">
       <div class="left">
-        <div class="outer__left__container">
+        <div class="outer__left__container" id="2">
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
             unde, voluptas at totam aliquam sapiente, sint, tenetur delectus et
@@ -40,7 +45,12 @@
             reprehenderit quod non rem asperiores ratione veniam dolores
             architecto voluptatum dolorum voluptate quis.
           </p>
-          <img class="image" src="http://placekitten.com/g/300/160" />
+          <img
+            class="image"
+            onmouseover="showForm(2)"
+            src="http://placekitten.com/g/300/160"
+            alt="Image 2"
+          />
           <p>
             Veritatis consequuntur nobis delectus dolor dolore? Voluptas quis
             quia porro mollitia itaque veniam ea iure fugiat beatae
@@ -58,12 +68,18 @@
         </div>
       </div>
       <div class="right__outer">
-        <div class="top">
+        <div class="top" id="3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, illum!
+          <img
+            class="image"
+            src="http://placekitten.com/g/50/30"
+            onmouseover="showForm(3)"
+            alt="Image 3"
+          />
         </div>
         <div class="right">
           <div class="bottom">
-            <div class="left__container">
+            <div class="left__container" id="4">
               <div class="left__inner">
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -75,26 +91,41 @@
                   aspernatur.
                 </p>
 
-                <p>
-                  Ducimus et quo minima nisi aliquam soluta magnam corrupti
-                  dolores odit aspernatur voluptate atque incidunt, ab obcaecati
-                  eaque totam eius. Illo nesciunt eum magni perferendis officiis
-                  temporibus non maiores natus debitis autem ipsum aliquam
-                  dolorem sunt totam quibusdam, in ad vitae tenetur voluptatibus
-                  id.
-                </p>
+                <img
+                  class="image"
+                  onmouseover="showForm(4)"
+                  src="http://placekitten.com/g/150/130"
+                  alt="Image 4"
+                />
 
-                <p>
-                  Earum, quis provident. Blanditiis, necessitatibus distinctio
-                  eum velit odio, placeat porro, similique voluptatem pariatur
-                  tenetur consequatur numquam. Error, quam. Officiis corrupti
-                  suscipit pariatur saepe, distinctio cumque quibusdam! Ullam,
-                  deserunt quo. Necessitatibus, tempore.
-                </p>
+                <h3>Calculate area:</h3>
+                <div class="length input">
+                  <label for="length">Length</label>
+                  <input type="number" id="length" min="0" />
+                </div>
+                <div class="width input">
+                  <label for="width">Width</label>
+                  <input type="number" id="width" min="0" />
+                </div>
+                <button onclick="calculateArea()">Обчислити</button>
+
+                <!-- <h3>Pass 10 numbers</h3>
+                <form
+                  onsubmit="processData(); return valiateForm(); return False"
+                >
+                  <label for="values"
+                    >Enter numbers separated with "," (1,2,3):</label
+                  >
+                  <input type="text" id="values" required />
+                  <br />
+                  <button type="submit">Count</button>
+                </form> -->
+
+                <p id="area"></p>
               </div>
             </div>
-            <div class="right__container">
-              <div class="right__inner">
+            <div class="right__container" id="5">
+              <div class="right__inner" id="textBlock">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
                   fugiat perspiciatis tempora doloremque praesentium explicabo
@@ -104,6 +135,12 @@
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                   Minima harum dicta voluptatum.
                 </p>
+                <img
+                  class="image"
+                  onmouseover="showForm(5)"
+                  src="http://placekitten.com/g/150/150"
+                  alt="Image 5"
+                />
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Veniam laudantium nam illo incidunt perferendis consequuntur
@@ -113,6 +150,12 @@
                   veritatis odio itaque recusandae vitae expedita non laborum
                   consectetur quod?
                 </p>
+
+                <h3>Bold text</h3>
+                <label>
+                  <input type="checkbox" id="boldCheckbox" /> Make text bold
+                  able
+                </label>
               </div>
             </div>
           </div>
@@ -121,15 +164,21 @@
     </div>
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer__inner">
+      <div class="footer__inner" id="6">
         <span class="footer__text"
           >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab fugiat
           laudantium illo quod placeat cupiditate eum ducimus quisquam. Fugiat
           vero dicta, modi possimus maxime sint exercitationem suscipit commodi
           a laborum?</span
         >
+        <img
+          class="image"
+          onmouseover="showForm(6)"
+          src="http://placekitten.com/g/80/50"
+          alt="Image 6"
+        />
         <div class="subtitle__outer">
-          <h2 class="footer__subtitle">Lorem ipsum dolor sit.</h2>
+          <h2 class="footer__subtitle" id="y">Lorem ipsum dolor sit.</h2>
         </div>
       </div>
     </footer>
