@@ -21,73 +21,61 @@ function calculateArea() {
   document.getElementById("area").textContent = "Area: " + area;
 }
 
-// function validateForm() {
-//   var values = document.getElementById("values").value;
-//   var numbers = values.split(",");
+function validateForm() {
+  var values = document.getElementById("values").value;
+  var numbers = values.split(" ");
 
-//   for (var i = 0; i < numbers.length; i++) {
-//     if (isNaN(numbers[i]) || numbers[i].trim() === "") {
-//       alert("Please enter valid numbers separated by commas.");
-//       return false;
-//     }
-//   }
+  for (var i = 0; i < numbers.length; i++) {
+    if (isNaN(numbers[i]) || numbers[i].trim() === "") {
+      alert("Please enter valid numbers separated by commas.");
+      return false;
+    }
+  }
 
-//   return true;
-// }
+  return true;
+}
 
-// function setCookie(name, value) {
-//   document.cookie = `${name}=${value}`;
-// }
+function setCookie(name, value) {
+  document.cookie = `${name}=${value}`;
+}
 
-// function getCookie(name) {
-//   var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-//   if (match) return match[2];
-// }
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  if (match) return match[2];
+}
 
-// function findMinMax() {
-//   var values = document.getElementById("values").value.split(",").map(Number);
-//   var min = Math.min(...values);
-//   var max = Math.max(...values);
-//   return { min, max };
-// }
+function findMinMax() {
+  var values = document.getElementById("values").value.split(",").map(Number);
+  var min = Math.min(...values);
+  var max = Math.max(...values);
+  return { min, max };
+}
 
-// function displayResult(min, max) {
-//   alert(`Min value: ${min}\nMax value: ${max}`);
-// }
+function displayResult(min, max) {
+  alert(`Min value: ${min}\nMax value: ${max}`);
+}
 
-// var cookieData = getCookie("data");
+var cookieData = getCookie("data");
 
-// if (cookieData) {
-//   var confirmReload = confirm(
-//     "Have some saved information. Do you want to load it?"
-//   );
-//   if (confirmReload) {
-//     var parsedData = JSON.parse(cookieData);
-//     displayResult(parsedData.min, parsedData.max);
-//     var reloadConfirm = confirm(
-//       "This page contains saved data. You need to refresh the page to reflect the changes. Refresh the page?"
-//     );
-//     if (reloadConfirm) {
-//       location.reload();
-//     }
-//   } else {
-//     setCookie("data", "", -1);
-//   }
-// } else {
-//   document.getElementById("values").style.display = "block"; // Показуємо поле для введення чисел
-// }
+if (cookieData) {
+  var confirmReload = confirm(
+    "Have some saved information. Do you want to load it?"
+  );
+  if (confirmReload) {
+    var parsedData = JSON.parse(cookieData);
+    displayResult(parsedData.min, parsedData.max);
+  } else {
+    setCookie("data", "", -1);
+  }
+} else {
+  document.getElementById("values").style.display = "block";
+}
 
-// function processData() {
-//   var result = findMinMax();
-//   setCookie("data", JSON.stringify(result));
-//   displayResult(result.min, result.max);
-//   var reloadConfirm = confirm(
-//     "This page contains saved data. You need to refresh the page to reflect the changes. Refresh the page?"
-//   );
-//   if (reloadConfirm) {
-//     location.reload();
-//   }
-// }
+function processData() {
+  var result = findMinMax();
+  setCookie("data", JSON.stringify(result));
+  displayResult(result.min, result.max);
+}
 
 function setFontWeight() {
   var checkbox = document.getElementById("boldCheckbox");
@@ -144,23 +132,20 @@ function createTable(event, blockId) {
 
   block.innerHTML = tableHTML;
 
-  // Create a container div for table and button
   var container = document.createElement("div");
   container.style.textAlign = "center";
   container.style.display = "flex";
   container.style.flexDirection = "column";
 
-  // Add a save button for this table
   var saveButton = document.createElement("button");
   saveButton.innerText = "Зберегти цю таблицю";
   saveButton.onclick = function () {
     saveTableData(blockId, rows, tableHTML);
   };
 
-  // Append the table and the save button to the container
-  container.appendChild(block.firstChild); // Add the table
-  container.appendChild(document.createElement("br")); // Add a line break
-  container.appendChild(saveButton); // Add the save button
+  container.appendChild(block.firstChild);
+  container.appendChild(document.createElement("br"));
+  container.appendChild(saveButton);
 
   block.appendChild(container);
 }
@@ -178,11 +163,10 @@ function saveTableData(blockId, rows, content) {
 function addClearButton(blockId) {
   var block = document.getElementById(blockId);
 
-  // Check if a clear button already exists
   if (!block.querySelector(".clear-button")) {
     var clearButton = document.createElement("button");
     clearButton.innerText = "Видалити дані цієї таблиці";
-    clearButton.className = "clear-button"; // Add a class for styling
+    clearButton.className = "clear-button";
     clearButton.onclick = function () {
       clearTableData(blockId);
     };
@@ -193,13 +177,11 @@ function addClearButton(blockId) {
 function clearTableData(blockId) {
   var tableData = JSON.parse(localStorage.getItem("tableData")) || {};
 
-  // Remove the table data for this block from localStorage
   delete tableData[blockId];
 
   localStorage.setItem("tableData", JSON.stringify(tableData));
   alert("Дані таблиці " + blockId + " були видалені з localStorage");
 
-  // Remove the clear button from the block
   var block = document.getElementById(blockId);
   var clearButton = block.querySelector(".clear-button");
   if (clearButton) {
