@@ -52,18 +52,20 @@ function findMinMax() {
 }
 
 function displayResult(min, max) {
-  alert(`Min value: ${min}\nMax value: ${max}`);
+  if (min && max) alert(`Min value: ${min}\nMax value: ${max}`);
+  else alert(`Please, provide correct values`);
 }
 
 var cookieData = getCookie("data");
 
 if (cookieData) {
-  var confirmReload = confirm(
-    "Have some saved information. Do you want to load it?"
-  );
-  if (confirmReload) {
-    var parsedData = JSON.parse(cookieData);
-    displayResult(parsedData.min, parsedData.max);
+  var parsedData = JSON.parse(cookieData);
+  if (parsedData.min && parsedData.max) {
+    var confirmReload = confirm(
+      "Have some saved information. Do you want to load it?"
+    );
+    if (confirmReload) displayResult(parsedData.min, parsedData.max);
+    else setCookie("data", "", -1);
   } else {
     setCookie("data", "", -1);
   }
@@ -108,9 +110,9 @@ function showForm(blockId) {
     '<form onsubmit="return createTable(event, ' +
     blockId +
     ')">' +
-    '<label for="rows">Кількість рядків:</label>' +
+    '<label for="rows">Number of lines:</label>' +
     '<input type="number" id="rows" min="1" required><br>' +
-    '<button type="submit">Створити таблицю</button>' +
+    '<button type="submit">Create table</button>' +
     "</form>";
 }
 
@@ -138,7 +140,7 @@ function createTable(event, blockId) {
   container.style.flexDirection = "column";
 
   var saveButton = document.createElement("button");
-  saveButton.innerText = "Зберегти цю таблицю";
+  saveButton.innerText = "Save this table";
   saveButton.onclick = function () {
     saveTableData(blockId, rows, tableHTML);
   };
@@ -157,7 +159,7 @@ function saveTableData(blockId, rows, content) {
     content: content,
   };
   localStorage.setItem("tableData", JSON.stringify(tableData));
-  alert("Дані таблиці " + blockId + " були збережені в localStorage");
+  alert("Data of table " + blockId + " has been saved in localStorage");
 }
 
 function addClearButton(blockId) {
@@ -165,7 +167,7 @@ function addClearButton(blockId) {
 
   if (!block.querySelector(".clear-button")) {
     var clearButton = document.createElement("button");
-    clearButton.innerText = "Видалити дані цієї таблиці";
+    clearButton.innerText = "Delete data of this table";
     clearButton.className = "clear-button";
     clearButton.onclick = function () {
       clearTableData(blockId);
@@ -180,7 +182,7 @@ function clearTableData(blockId) {
   delete tableData[blockId];
 
   localStorage.setItem("tableData", JSON.stringify(tableData));
-  alert("Дані таблиці " + blockId + " були видалені з localStorage");
+  alert("Data of table " + blockId + " has been deleted from localStorage");
 
   var block = document.getElementById(blockId);
   var clearButton = block.querySelector(".clear-button");
